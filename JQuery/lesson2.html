@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #box
+    {
+        /*border: 1px solid black;*/
+        padding: 10px;
+        display: flex
+    }
+    #box>p
+    {
+        border: 2px solid red;
+        background-color: blue;
+        height: 200px;
+        width: 200px;
+        margin-right: 20px;
+        color: white;
+        text-align: center;
+        font-size: 2rem;
+    }
+</style>
+<body>
+    <table width="500px">
+        <tr>
+            <td><input type="button" value="fade in" id="fadein" /></td>
+            <td><input type="button" value="fade out" id="fadeout" /></td>
+            <td><input type="button" value="fade toggle" id="fadetoggle" /></td>
+            <td><input type="button" value="fade to" id="fadeto" /></td>
+        </tr>
+    </table>
+    <div id="box">
+        <p id="p1">1</p>
+        <p id="p2">2</p>
+        <p id="p3">3</p>
+        <p id="p4">4</p>
+    </div>
+    <script src="jquery-min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $("p").click(function(){
+                //$(this).hide();
+                //$(this).hide('slow');
+                //$(this).hide('fast');
+                $(this).hide();
+            });
+
+
+            $("#fadein").click(function(){
+                $("p").fadeIn();
+            });
+
+            $("#fadeout").click(function(){
+                $("p").fadeOut();
+            });
+
+            $("#fadetoggle").click(function(){
+                $("p").fadeToggle();
+            });
+
+            $("#fadeto").click(function(){
+                $("#p1").fadeTo("slow",0.1);
+                $("#p2").fadeTo("slow",0.2);
+                $("#p3").fadeTo("slow",0.3);
+                $("#p4").fadeTo("slow",0.4);
+            });
+            
+        });
+    </script>
+</body>
+</html>
