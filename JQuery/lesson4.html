@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body
+    {
+        background-image: url();
+    }
+    #man
+    {
+        height: 300px;
+        position: absolute;
+        left: 450px;
+        top: 200px;
+    }
+</style>
+
+<body>
+    <img src="owl.png" alt="" id="man">
+    <!-- jquery cdn (internet is required)-->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+
+    <!-- local jquery -->
+     <script src="jquery-min.js"></script>
+     <script>
+        $(document).ready(function(){
+            $("#man").click(function(){
+                $(this).animate({top:'100px'},1000).animate({top:'200px'},1000);
+            });
+            $("#man").dblclick(function(){
+                $(this).stop(true,true);
+            })
+        });
+     </script>
+</body>
+
+</html>

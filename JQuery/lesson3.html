@@ -6,6 +6,57 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        #box
+        {
+            border: 1px solid black;
+            padding: 10px;
+            display: flex
+        }
+        #box>p
+        {
+            border: 2px solid red;
+            background-color: blue;
+            height: 200px;
+            width: 200px;
+            margin-right: 20px;
+            color: white;
+            text-align: center;
+            font-size: 2rem;
+        }
+    </style>
+    <body>
+        <table width="500px">
+            <tr>
+                <td><input type="button" value="slide in" id="slideup" /></td>
+                <td><input type="button" value="slide out" id="slidedown" /></td>
+                <td><input type="button" value="slide toggle" id="sildetoggle" /></td>
+            </tr>
+        </table>
+        <div id="box">
+            <p id="p1">1</p>
+            <p id="p2">2</p>
+            <p id="p3">3</p>
+            <p id="p4">4</p>
+        </div>
+        <script src="jquery-min.js"></script>
+        <script>
+            $(document).ready(function(){
     
+                $("#slideup").click(function(){
+                    $("p").slideUp();
+                });
+    
+                $("#slidedown").click(function(){
+                    $("p").slideDown();
+                });
+    
+                $("#sildetoggle").click(function(){
+                    $("p").slideToggle();
+                });
+                
+            });
+        </script>
+    </body>
+    </html>
 </body>
-</html>
