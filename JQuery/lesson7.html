@@ -30,7 +30,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" value="Add Product" />
+                                <input type="submit" value="Add Product" name="submit"/>
     
                             </td>
                         </tr>
@@ -64,12 +64,21 @@
      <script src="jquery-min.js"></script>
      <script>
         $(document).ready(function(){
-            $("#form1").submit(function(){
+            $("#form1").submit(function(e){
                 //alert("submit");
                 let name = $("#name").val();
                 let price = $("#price").val();
                 let quantity = $("#quantity").val();
-                console.log(name,price,quantity);
+                let total = parseInt(price) * parseInt(quantity);
+                let txt = (total * 0.10).toFixed(2);
+                total = parseInt(total) + parseInt(txt);
+                console.log(name,price,quantity,total,txt);
+
+                $("#output").prepend(`<tr><td></td><td>${name}</td><td>${price}</td><td>${quantity}</td> <td>${txt}</td><td>${total}</td></tr>`);
+
+                $("#name").val("");
+                $("#price").val("");
+                $("#quantity").val("");
                 return false;
             });
         });

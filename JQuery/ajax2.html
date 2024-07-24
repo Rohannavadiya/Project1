@@ -8,12 +8,15 @@
 </head>
 
 <body>
-
+    <h1>Load method demo</h1>
+    <h2 id="output">output will be diisplay here</h2>
     <!-- jquery cdn (internet is required)-->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
-
-    <!-- local jquery -->
-     <script src="jquery-min.js"></script>
+    <script src="jquery-min.js"></script>
+    <script>
+        setInterval(()=>{
+            $("#output").load("gettime.php");
+        },1000);
+    </script>
 </body>
 
 </html>
