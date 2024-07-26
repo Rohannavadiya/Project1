@@ -36,7 +36,7 @@ require_once('inc/header-part.php');
             </thead>
             <tbody>
             <?php
-                    $sql ="select l.id as id,l.duration as duration,l.amount,lecturedate,payoutid,t.fullname,c.title as coursetitle, s.title as subjecttitle,classtime from lecture l,course c,subject s,teacher t,batch b where l.batchid=t.id and l.subjectid=s.id and b.courseid=c.id order by l.id";
+                    $sql ="select l.id as id,l.duration as duration,l.amount,lecturedate,payoutid,t.fullname,c.title as coursetitle, s.title as subjecttitle,classtime from lecture l,course c,subject s,teacher t,batch b where l.batchid=t.id and l.subjectid=s.id and b. courseid=c.id order by l.id";
                     $cmd = $db->prepare($sql);
                     $cmd->execute();
                     $table = $cmd->fetchAll();
@@ -47,7 +47,7 @@ require_once('inc/header-part.php');
                     <td>
                         <input type="checkbox" name="" id="">
                     </td>
-                    <td><?= $id; ?></td>
+                    <td><?= $id;?></td>
                         <td><?= $coursetitle; ?></td>
                         <td><?= $classtime; ?></td>
                         <td><?= $subjecttitle; ?></td>
