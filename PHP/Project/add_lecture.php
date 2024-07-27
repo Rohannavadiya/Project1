@@ -31,7 +31,7 @@ require_once('inc/header-part.php');
                             { 
                                 echo "<option value={$row['id']}>{$row['fullname']}</option>";
                             }
-                        ?>fgyfh
+                        ?>
                         </select>
                     </td>
                 </tr>
