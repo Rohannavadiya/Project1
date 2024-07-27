@@ -40,17 +40,7 @@ require_once('inc/header-part.php');
                     <td>
                         <select name="subjectid" id="subjectid" required>
                             <option value="">Select Subject</option>
-                            <?php
-                         //var_dump($_POST);
-                            $sql = "select id,title from subject order by title";
-                            $cmd = $db -> prepare($sql);
-                            $cmd->execute();
-                            $table = $cmd -> fetchAll();
-                            foreach($table as $row)
-                            { 
-                                echo "<option value={$row['id']}>{$row['title']}</option>";
-                            }
-                        ?>
+        
                         </select>
                     </td>
                 </tr>
@@ -109,8 +99,15 @@ require_once('inc/header-part.php');
                 </tr>
             </table>
         </form>
-
     </div>
+    <script src="dist/jquery-min.js"></script>
+    <script>
+        $(document).readu(function(){
+            $("#batchid").change(function(){
+                let ajaxur1="ajax"
+            });
+        });
+    </script>
 </body>
 <?php
 require_once('inc/footer.php');
