@@ -1,7 +1,8 @@
 <?php
     require_once("../inc/connection.php");
-    $sql="select s.id,s.title from subject s where courseid in(select c.id from course c , batch b where c.id=b.courseid and b.courseid=?)";
+    $sql="SELECT s.id ,s.title FROM subject s, batch b WHERE b.courseid=s.courseid and b.id=?";
     extract($_REQUEST);
+    //var_dump($_REQUEST);
     $cmd = $db->prepare($sql);
     $cmd->bindParam(1,$batchid);
     $cmd->execute();
@@ -11,5 +12,5 @@
     {
         echo "<option value='{$row['id']}'>{$row['title']}</option>";
     }
-    echo "<select>";
+    echo "</select>";
 ?>

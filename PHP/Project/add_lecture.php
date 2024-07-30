@@ -37,13 +37,14 @@ require_once('inc/header-part.php');
                 </tr>
                 <tr>
                     <td>Subject ID</td>
-                    <td>
+                    <td id="output">
                         <select name="subjectid" id="subjectid" required>
                             <option value="">Select Subject</option>
-        
+
                         </select>
                     </td>
                 </tr>
+
                 <tr>
                     <td>Batch ID</td>
                     <td>
@@ -59,6 +60,7 @@ require_once('inc/header-part.php');
                             foreach($table as $row)
                             { 
                                 echo "<option value={$row['id']}>{$row['classtime']}</option>";
+
                             }
                         ?>
                         </select>
@@ -100,12 +102,18 @@ require_once('inc/header-part.php');
             </table>
         </form>
     </div>
-    <script src="dist/jquery-min.js"></script>
+    <script src="jquery-min.js"></script>
     <script>
-        $(document).readu(function(){
-            $("#batchid").change(function(){
-                let ajaxur1="ajax"
-            });
+        $(document).ready(function(){
+           $("#batchid").change(function(){
+                //alert('batch changed');
+                let ajaxurl = "ajax/getsubject.php?batchid=" + $(this).val();
+                // alert(ajaxurl);
+                $("#output").load(ajaxurl);
+                /*$.get(ajaxurl,function(data,status){
+                    $("#output").html(data);
+                });*/
+           });
         });
     </script>
 </body>
