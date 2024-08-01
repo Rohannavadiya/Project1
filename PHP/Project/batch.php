@@ -31,10 +31,9 @@ require_once('inc/header-part.php');
             </thead>
             <tbody>
             <?php 
-                    $sql = "select b.*,title from batch b,course c where c.id=courseid order by b.id";
+                    $sql = "select b.*,title from batch b,course c where b.isdeleted=0 and c.id=courseid order by b.id";
                     $cmd = $db->prepare($sql);
                     $cmd->execute();
-
                     while($row = $cmd->fetch())
                     {
                 ?>
@@ -45,8 +44,8 @@ require_once('inc/header-part.php');
                     <td><?php echo toDMY($row['enddate']); ?></td>
                     <td><?php echo $row['classtime']; ?></td>
                     <td>
-                        <a href="edit_batch.php"><i title="edit" class="fa fa-edit fa-2x"></i></a>
-                        <a href="delete_batch.php"><i title="delete" class="fa fa-trash fa-2x"></i></a>
+                        <a href="edit_batch.php?batchid=<?= $row['id'] ?>" ><i title="edit" class="fa fa-edit fa-2x"></i></a>
+                        <a class="delete"><i title="delete" class="fa fa-trash fa-2x"></i></a>
                     </td>
                 </tr>
                 <?php
@@ -55,6 +54,36 @@ require_once('inc/header-part.php');
             </tbody>
         </table>
     </div>
+    <script src="jquery-min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(".delete").click(function(){
+
+                let chioce = confirm("DO YOU WANT TO DELETE");
+                if(chioce===true){
+
+                    let id = $(this).parent().parent().find("td:first").html();
+                    let row = $(this).parent().parent();
+                    let table = 'batch';
+                    var pageAddress = "ajax/delete_row.php";
+                    $.post(pageAddress, {
+                        rowid:id,
+                        tablename:table
+                    },
+                    function(response){
+                       console.log(response);
+                        $(row).fadeOut(1000,function(){
+                            $(row).remove();
+                        })
+                    }
+                    ).fail(function(error) {
+                        alert('error occured....');
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 <?php
 require_once('inc/footer.php');

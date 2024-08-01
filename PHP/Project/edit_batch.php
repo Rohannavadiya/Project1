@@ -6,7 +6,22 @@ require_once('inc/header-part.php');
 </head>
 
 <body>
-    <?php require_once('inc/menu.php'); ?>
+    <?php require_once('inc/menu.php'); 
+        extract($_REQUEST);
+        $sql="SELECT * FROM batch WHERE id=?";
+        $cmd=$db->prepare($sql);
+        $cmd->bindParam(1,$batchid);
+        $cmd->execute();
+        $batch=$cmd->fetch();
+        extract($batch); 
+        // foreach($batch as $row)
+        // {
+            
+        //     //var_dump($row);   
+        //     print_r($row);
+        // }
+        
+    ?>
     <div class="heading">
         <div>
             <span>Batch -> Edit Batch</span>
@@ -14,37 +29,37 @@ require_once('inc/header-part.php');
         </div>
     </div>
     <div class="container white-form">
-        <form action="">
+        <form action="Submit/updet_batch.php" method="post">
             <table id="input-table">
                 <tr>
                     <td width='33%'>Edit courseid</td>
                     <td>
                         <input type="text" name="courseid" id="courseid" class="input-box" 
-                        required value="PSI" />
+                        required value="<?= $id ?>" />
                     </td>
                 </tr>
                 <tr>
                     <td>Edit startdate</td>
                     <td>
                         <input type="date" name="startdate" id="startdate" class="input-box" 
-                        required/>
+                        required value="<?= $startdate ?>"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Edit enddate</td>
                     <td>
-                        <input type="date" name="enddate" id="enddate" class="input-box" required/>
+                        <input type="date" name="enddate" id="enddate" class="input-box" required value="<?= $enddate ?>"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Edit classtime</td>
                     <td>
-                    <input type="number" name="classtime" id="classtime" class="input-box" required/>
+                    <input type="number" name="classtime" id="classtime" class="input-box" required value="<?= $classtime ?>"/>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <button type="submit" class="save">
+                        <button type="submit" class="save" name="submit">
                             <i class="fa fa-save"></i> Save changes
                         </button>
                         <button type="reset" class="clear">

@@ -34,7 +34,7 @@ require_once('inc/header-part.php');
             </thead>
             <tbody>
                 <?php
-                $sql = "select * from teacher order by id desc";
+                $sql = "select * from teacher where isdeleted=0 order by id desc";
                 $cmd = $db->prepare($sql);
                 $cmd->execute();
                 //fetch all rows 
@@ -59,7 +59,7 @@ require_once('inc/header-part.php');
                         </td>
                         <td>
                             <a href="edit_teacher.php"><i title="edit" class="fa fa-edit fa-2x"></i></a>
-                            <a href="delete_teacher.php"><i title="delete" class="fa fa-trash fa-2x"></i></a>
+                            <a class="delete"><i title="delete" class="fa fa-trash fa-2x"></i></a>
                         </td>
                     </tr>
                 <?php } //end of loop 
@@ -70,7 +70,36 @@ require_once('inc/header-part.php');
             </tbody>
         </table>
     </div>
-    <script src="dist/js/lightbox-plus-jquery.min.js"></script>
+    <script src="jquery-min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(".delete").click(function(){
+
+                let chioce = confirm("DO YOU WANT TO DELETE");
+                if(chioce===true){
+
+                    let id = $(this).parent().parent().find("td:first").html();
+                    let row = $(this).parent().parent();
+                    let table = 'teacher';
+                    var pageAddress = "ajax/delete_row.php";
+                    $.post(pageAddress, {
+                        rowid:id,
+                        tablename:table
+                    },
+                    function(response){
+                       console.log(response);
+                        $(row).fadeOut(1000,function(){
+                            $(row).remove();
+                        })
+                    }
+                    ).fail(function(error) {
+                        alert('error occured....');
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 <?php
 require_once('inc/footer.php');
