@@ -46,7 +46,7 @@ require_once('inc/header-part.php');
                         <td><?php echo $row['duration']; ?></td>
                         <td><?php echo $row['description']; ?></td>
                         <td>
-                            <a href="edit_course.php"><i title="edit" class="fa fa-edit fa-2x"></i></a>
+                            <a href="edit_course.php?courseid=<?= $row['id']; ?>"><i title="edit" class="fa fa-edit fa-2x"></i></a>
                             <a class="delete"><i title="delete" class="fa fa-trash fa-2x"></i></a>
                         </td>
                     </tr>
