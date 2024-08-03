@@ -64,6 +64,7 @@ require_once('inc/header-part.php');
                     </td>
                 </tr>
             </table>
+            <input type="hidden" name="subjectid" value="<?= $id; ?>">
         </form>
     </div>
 </body>
