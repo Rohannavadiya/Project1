@@ -14,13 +14,6 @@ require_once('inc/header-part.php');
         $cmd->execute();
         $batch=$cmd->fetch();
         extract($batch); 
-        // foreach($batch as $row)
-        // {
-            
-        //     //var_dump($row);   
-        //     print_r($row);
-        // }
-        
     ?>
     <div class="heading">
         <div>
@@ -54,7 +47,7 @@ require_once('inc/header-part.php');
                 <tr>
                     <td>Edit classtime</td>
                     <td>
-                    <input type="number" name="classtime" id="classtime" class="input-box" required value="<?= $classtime ?>"/>
+                    <input type="text" name="classtime" id="classtime" class="input-box" required value="<?= $classtime ?>"/>
                     </td>
                 </tr>
                 <tr>

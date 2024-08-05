@@ -42,7 +42,7 @@ require_once('inc/header-part.php');
                     <td><?php echo $row['title']; ?></td>
                     <td><?php echo $row['rate']; ?></td>
                     <td>
-                        <a href="edit_subject.php"><i title="edit" class="fa fa-edit fa-2x"></i></a>
+                        <a href="edit_subject.php?subjectid=<?= $row['id'] ?>"><i title="edit" class="fa fa-edit fa-2x"></i></a>
                         <a class="delete"><i title="delete" class="fa fa-trash fa-2x"></i></a>
                     </td>
                 </tr>

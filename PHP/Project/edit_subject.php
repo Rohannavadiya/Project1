@@ -6,7 +6,15 @@ require_once('inc/header-part.php');
 </head>
 
 <body>
-    <?php require_once('inc/menu.php'); ?>
+    <?php require_once('inc/menu.php'); 
+        extract($_REQUEST);
+        $sql="SELECT * FROM `subject` WHERE id=?";
+        $cmd=$db->prepare($sql);
+        $cmd->bindParam(1,$subjectid);
+        $cmd->execute();
+        $subject=$cmd->fetch();
+        extract($subject); 
+    ?>
     <div class="heading">
         <div>
             <span>Subject -> Edit Subject</span>
@@ -14,27 +22,24 @@ require_once('inc/header-part.php');
         </div>
     </div>
     <div class="container white-form">
-        <form action="">
+        <form action="Submit/update_subject.php" method="post">
             <table id="input-table">
                 <tr>
-                    <td width='33%'>Change course</td>
+                <td>Edit Course</td>
                     <td>
-                        <select name="courseid" id="courseid" class="input-box" required>
-                            <option value="">select course</option>
-
-                        </select>
+                        <input type="text" name="courseid" id="courseid" class="input-box" required value="<?= $courseid ?>"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Edit Title</td>
                     <td>
-                        <input type="text" name="title" id="title" class="input-box" required />
+                        <input type="text" name="title" id="title" class="input-box" required value="<?= $title ?>"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Edit Rate</td>
                     <td>
-                        <input type="number" name="rate" id="rate" class="input-box" required />
+                        <input type="number" name="rate" id="rate" class="input-box" required value="<?= $rate ?>"/>
                     </td>
                 </tr>
                
@@ -49,6 +54,7 @@ require_once('inc/header-part.php');
                     </td>
                 </tr>
             </table>
+            <input type="hidden" name="subjectid" value="<?= $id; ?>">
         </form>
     </div>
 </body>
