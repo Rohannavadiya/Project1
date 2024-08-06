@@ -53,9 +53,14 @@ require_once('inc/header-part.php');
                         <td>Mo : <?= $mobile; ?> <br />
                             Email : <?= $email; ?>
                         </td>
-                        <td><?= $gender; ?></td>
+                        <td><?php if($gender==1)
+                                    echo "Male";
+                                else
+                                    echo"Female";
+                             ?></td>
                         <td>
-                            <?= $qulification; ?>
+                            <?= $qulification; ?> <br/>
+                            <?= $experience; ?>
                         </td>
                         <td>
                             <a href="edit_teacher.php?teacherid=<?= $id; ?>"><i title="edit" class="fa fa-edit fa-2x"></i></a>
