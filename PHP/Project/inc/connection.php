@@ -2,7 +2,7 @@
 date_default_timezone_set("asia/kolkata");
 define("FILENAME",$_SERVER['DOCUMENT_ROOT']."/RohanNavadiya/php/project/inc/error.log");
 define("ISDEBUG",true);
-define("SERVER","localhost:3306");
+define("SERVER","localhost:3308");
 define("USERNAME","root");
 define("PASSWORD","");
 define("DATABASE","rohannavadiya1");

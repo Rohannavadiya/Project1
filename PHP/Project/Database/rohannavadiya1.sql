@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jul 20, 2024 at 06:45 AM
--- Server version: 5.7.36
--- PHP Version: 7.4.26
+-- Host: 127.0.0.1:3308
+-- Generation Time: Aug 06, 2024 at 06:30 AM
+-- Server version: 8.0.18
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `batch` (
   `startdate` date NOT NULL,
   `enddate` date NOT NULL,
   `classtime` text NOT NULL,
+  `isdeleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 
@@ -41,10 +43,10 @@ CREATE TABLE IF NOT EXISTS `batch` (
 -- Dumping data for table `batch`
 --
 
-INSERT INTO `batch` (`id`, `courseid`, `startdate`, `enddate`, `classtime`) VALUES
-(1, 2, '2024-07-10', '2024-12-31', '10:00 AM'),
-(2, 4, '2024-07-11', '2024-12-30', '11:00 AM'),
-(3, 6, '2024-07-12', '2024-12-29', '09:00 AM');
+INSERT INTO `batch` (`id`, `courseid`, `startdate`, `enddate`, `classtime`, `isdeleted`) VALUES
+(1, 1, '2024-07-10', '2024-12-31', '10:00 AM', 0),
+(2, 2, '2024-07-11', '2024-12-30', '11:00 AM', 0),
+(3, 3, '2024-07-12', '2024-12-29', '09:00 AM', 0);
 
 -- --------------------------------------------------------
 
@@ -59,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `fees` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
   `description` text NOT NULL,
+  `isdeleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
@@ -66,10 +69,10 @@ CREATE TABLE IF NOT EXISTS `course` (
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`id`, `title`, `fees`, `duration`, `description`) VALUES
-(2, 'ASI', 25000, 180, 'SAMPLE DETAIL GOES HERE\r\n                        '),
-(4, 'PSI', 25000, 180, 'SAMPLE DETAIL GOES HERE\r\n                        '),
-(6, 'CLARK', 25000, 180, 'SAMPLE DETAIL GOES HERE\r\n                        ');
+INSERT INTO `course` (`id`, `title`, `fees`, `duration`, `description`, `isdeleted`) VALUES
+(1, 'ASI', 25000, 180, 'SAMPLE DETAIL GOES HERE\r\n                        ', 0),
+(2, 'PSI', 25000, 180, 'SAMPLE DETAIL GOES HERE\r\n                        ', 0),
+(3, 'CLARK', 25000, 180, 'SAMPLE DETAIL GOES HERE\r\n                        ', 0);
 
 -- --------------------------------------------------------
 
@@ -229,6 +232,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `courseid` int(11) NOT NULL,
   `title` text NOT NULL,
   `rate` int(11) NOT NULL,
+  `isdeleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
@@ -236,10 +240,10 @@ CREATE TABLE IF NOT EXISTS `subject` (
 -- Dumping data for table `subject`
 --
 
-INSERT INTO `subject` (`id`, `courseid`, `title`, `rate`) VALUES
-(2, 2, 'IPS', 8000),
-(4, 4, 'IAS', 50000),
-(6, 6, 'Clark', 50000);
+INSERT INTO `subject` (`id`, `courseid`, `title`, `rate`, `isdeleted`) VALUES
+(1, 1, 'IPS', 8000, 1),
+(2, 2, 'IAS', 50000, 0),
+(3, 3, 'Clark', 50000, 0);
 
 -- --------------------------------------------------------
 
@@ -257,6 +261,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `qulification` text NOT NULL,
   `experience` text NOT NULL,
   `photo` text NOT NULL,
+  `isdeleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -264,10 +269,10 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`id`, `fullname`, `mobile`, `email`, `gender`, `qulification`, `experience`, `photo`) VALUES
-(1, 'Ghanshyam Panday', 9625342651, 'ghanshyampanday@gmail.com', 1, 'BCA, MCA', '50', '2776-IMG-20240701-WA0001'),
-(2, 'Mohan Sharma', 8315352745, 'mohansharma11@gmail.com', 1, 'MSCit', '50', '2522_WhatsApp Image 2024-07-03 at 6.36.25 PM.jpeg'),
-(3, 'Vidhi Patel', 6354102828, 'vidhi95@gmail.com', 1, 'bca', '50', '4239_IMG-20240701-WA0001.jpg');
+INSERT INTO `teacher` (`id`, `fullname`, `mobile`, `email`, `gender`, `qulification`, `experience`, `photo`, `isdeleted`) VALUES
+(1, 'Ghanshyam Panday', 9625342651, 'ghanshyampanday@gmail.com', 1, 'BCA, MCA', '50', '2776-IMG-20240701-WA0001', 0),
+(2, 'Mohan Sharma', 8315352745, 'mohansharma11@gmail.com', 1, 'MSCit', '50', '2522_WhatsApp Image 2024-07-03 at 6.36.25 PM.jpeg', 0),
+(3, 'Vidhi Patel', 6354102828, 'vidhi95@gmail.com', 1, 'bca', '50', '4239_IMG-20240701-WA0001.jpg', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
