@@ -94,7 +94,7 @@ require_once('inc/header-part.php');
                 </tr>
             </table>
             <input type="hidden" name="teacherid" value="<?= $teacherid ?>" />
-            <input type="text" name="oldphoto" value="<?= $photo ?>" />
+            <input type="hidden" name="oldphoto" value="<?= $photo ?>" />
         </form>
     </div>
 </body>
