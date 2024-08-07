@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Aug 06, 2024 at 06:45 AM
+-- Generation Time: Aug 07, 2024 at 06:45 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.12
 
@@ -241,9 +241,9 @@ CREATE TABLE IF NOT EXISTS `subject` (
 --
 
 INSERT INTO `subject` (`id`, `courseid`, `title`, `rate`, `isdeleted`) VALUES
-(1, 1, 'IPS', 8000, 1),
-(2, 2, 'IAS', 50000, 0),
-(3, 3, 'Clark', 50000, 0);
+(1, 1, 'Anthropology', 8000, 1),
+(2, 2, 'Indian Constitution', 50000, 0),
+(3, 3, 'General Intelligence and Reasoning', 50000, 0);
 
 -- --------------------------------------------------------
 
@@ -271,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 
 INSERT INTO `teacher` (`id`, `fullname`, `mobile`, `email`, `gender`, `qulification`, `experience`, `photo`, `isdeleted`) VALUES
 (1, 'Ghanshyam Panday', 9625342651, 'ghanshyampanday@gmail.com', 1, 'BCA, MCA', '50', '2776-IMG-20240701-WA0001', 0),
-(2, 'Mohan Sharma', 8315352745, 'mohansharma11@gmail.com', 1, 'MSCit', '50', '2522_WhatsApp Image 2024-07-03 at 6.36.25 PM.jpeg', 0),
+(2, 'Mohan Sharma', 8315352745, 'mohansharma11@gmail.com', 1, 'MSCit', '50', '3655_8f60e5ba68f6abec6701de69d1cb4a36.jpg', 0),
 (3, 'Vidhi Patel', 6354102828, 'vidhi95@gmail.com', 0, 'bca', '50', '4239_IMG-20240701-WA0001.jpg', 0);
 COMMIT;
 

@@ -27,13 +27,50 @@ require_once('inc/header-part.php');
                 <tr>
                 <td>Edit Course</td>
                     <td>
-                        <input type="text" name="courseid" id="courseid" class="input-box" required value="<?= $courseid ?>"/>
+                        <select name="courseid" id="courseid">
+                            <?php
+                                $sql="select id,title from course where id=?";
+                                $cmd=$db->prepare($sql);
+                                $cmd->bindParam(1,$subjectid);
+                                $cmd->execute();
+                                $table=$cmd->fetchAll();
+                                foreach($table as $row)
+                                {
+                                    echo "<option value={$row['id']}>{$row['title']}</option>";
+                                }
+                            ?>
+                            <?php
+                                $sql="select id,title from course where id!=?";
+                                $cmd=$db->prepare($sql);
+                                $cmd->bindParam(1,$subjectid);
+                                $cmd->execute();
+                                $table=$cmd->fetchAll();
+                                foreach($table as $row)
+                                {
+                                    echo "<option value={$row['id']}>{$row['title']}</option>";
+                                }
+                            ?>
+
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Edit Title</td>
-                    <td>
-                        <input type="text" name="title" id="title" class="input-box" required value="<?= $title ?>"/>
+                    <td id="output">
+                        <select name="titleid" id="titleid">
+                            <!-- <option value="">Select Subject</option> -->
+                        <?php
+                                extract($_REQUEST);
+                                $sql="select id,title from subject where id=?";
+                                $cmd=$db->prepare($sql);
+                                $cmd->bindParam(1,$subjectid);
+                                $cmd->execute();
+                                $table=$cmd->fetchAll();
+                                foreach($table as $row)
+                                {
+                                    echo "<option value={$row['id']}>{$row['title']}</option>";
+                                }
+                            ?>
                     </td>
                 </tr>
                 <tr>
@@ -57,6 +94,16 @@ require_once('inc/header-part.php');
             <input type="hidden" name="subjectid" value="<?= $id; ?>">
         </form>
     </div>
+    <script src="jquery-min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#courseid").change(function(){
+                let ajaxurl = "ajax/gettitle.php?courseid=" + $(this).val();
+
+                $("#output").load(ajaxurl);
+            });
+        });
+    </script>
 </body>
 <?php
 require_once('inc/footer.php');
